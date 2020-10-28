@@ -2,6 +2,7 @@ package pe.perci.app.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,11 +33,17 @@ public class BancoController extends HttpServlet {
 		
 		// Proceso
 		BancoService objS=new BancoService();
-		BancoDto[] tabla=objS.procesar(capital,tiempo,riesgo);	
+		BancoDto[] tabla=objS.procesar(capital,tiempo,riesgo);
+		
 		// Reporte
 		request.setAttribute("tabla", tabla);
+		request.setAttribute("capital", capital);
+		request.setAttribute("tiempo", tiempo);
+		request.setAttribute("riesgo", riesgo);
+		request.setAttribute("interes", objS.interesP(riesgo));
+		request.setAttribute("amor", objS.calcularAmr(capital, tiempo));
 		// Forward
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("simulacion.jsp");
 		rd.forward(request, response);
 	}
 

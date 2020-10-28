@@ -28,7 +28,25 @@ public class BancoService {
 		return registro;
 	}
 
-	    
+	  public String interesP(String riesgo) {
+		  String i=null;
+		  switch (riesgo) {
+			case "1":
+				i = "2.25%";
+				break;
+			case "2":
+				i = "3.14%";
+				break;
+			case "3":
+				i = "4.25%";
+				break;
+			case "4":
+				i = "6.12%";
+				break;
+			}
+			return i;
+		  
+	  }  
 	
 	public double calcularInteres(String riesgo, double capital) {
 		switch (riesgo) {
